@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Árkalkulátor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Árkalkulátor</h1>
+    <!-- Totálkár -->
+    <label>
+        <input type="checkbox" id="totaledCheckbox"> Totálkár?
+    </label>
+
+    <!-- Kiszállás helye -->
+    <label for="locationSelect">Kiszállás helye:</label>
+    <select id="locationSelect">
+        <option value="telephely">Telephely</option>
+        <option value="város">Város</option>
+        <option value="vidék">Vidék</option>
+        <option value="roxwood county">Roxwood County</option>
+    </select>
+
+    <!-- Kategória -->
+    <label for="categorySelect">Kategória:</label>
+    <select id="categorySelect">
+        <option value="munkajármű">Munkajármű</option>
+        <option value="alsó">Alsó</option>
+        <option value="közép">Közép</option>
+        <option value="felső">Felső</option>
+        <option value="luxus/prémium">Luxus/Prémium</option>
+        <option value="super classic">Super Classic</option>
+    </select>
+
+    <!-- Százalék -->
+    <label for="percentageInput">Állapot (%):</label>
+    <input type="text" id="percentageInput" placeholder="Írj be egy számot 0 és 100 között">
+
+    <!-- Eredmény -->
+    <div class="result" id="resultText">Végső ár: $0</div>
+</div>
+<script src="index.js"></script>
+</body>
+</html>
