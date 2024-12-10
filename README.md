@@ -1,4 +1,4 @@
-# Ár Kalkulátor Weboldal
+# Árkalkulátor Weboldal
 
 # https://szigfrid.github.io/Bright-s-Calculator/
 
