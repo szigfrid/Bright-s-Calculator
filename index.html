@@ -1,45 +1,55 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Árkalkulátor</title>
+    <title>Ár Kalkulátor</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-    <h1>Árkalkulátor</h1>
-    <!-- Totálkár -->
-    <label>
-        <input type="checkbox" id="totaledCheckbox"> Totálkár?
-    </label>
-
-    <!-- Kiszállás helye -->
-    <label for="locationSelect">Kiszállás helye:</label>
-    <select id="locationSelect">
-        <option value="telephely">Telephely</option>
-        <option value="város">Város</option>
-        <option value="vidék">Vidék</option>
-        <option value="roxwood county">Roxwood County</option>
-    </select>
-
-    <!-- Kategória -->
-    <label for="categorySelect">Kategória:</label>
-    <select id="categorySelect">
-        <option value="munkajármű">Munkajármű</option>
-        <option value="alsó">Alsó</option>
-        <option value="közép">Közép</option>
-        <option value="felső">Felső</option>
-        <option value="luxus/prémium">Luxus/Prémium</option>
-        <option value="super classic">Super Classic</option>
-    </select>
-
-    <!-- Százalék -->
-    <label for="percentageInput">Állapot (%):</label>
-    <input type="text" id="percentageInput" placeholder="Írj be egy számot 0 és 100 között">
-
-    <!-- Eredmény -->
-    <div class="result" id="resultText">Végső ár: $0</div>
+    <h1>Ár Kalkulátor</h1>
+    <div class="form-group">
+        <label for="totaled">Totálkár?</label>
+        <input type="checkbox" id="totaled">
+    </div>
+    <div class="form-group">
+        <label for="location">Kiszállás helye:</label>
+        <select id="location">
+            <option value="telephely">Telephely</option>
+            <option value="város">Város</option>
+            <option value="vidék">Vidék</option>
+            <option value="roxwood county">Roxwood County</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="type">Típus:</label>
+        <select id="type">
+            <option value="bright">Bright's</option>
+            <option value="kovaac">Kovaac Offroad</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="category">Kategória:</label>
+        <select id="category">
+            <option value="munkajármű">Munkajármű</option>
+            <option value="alsó">Alsó</option>
+            <option value="közép">Közép</option>
+            <option value="felső">Felső</option>
+            <option value="luxus/prémium">Luxus/Prémium</option>
+            <option value="super classic">Super Classic</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="percentage">Állapot (százalék):</label>
+        <input type="number" id="percentage" min="0" max="100" value="100">
+    </div>
+    <div class="result">
+        <h2 id="result">Végső ár: $0</h2>
+    </div>
+    <footer>
+        <p class="christmas-note">Karácsonyi árak szerint frissítve - 2024. 12. 19</p>
+    </footer>
 </div>
 <script src="index.js"></script>
 </body>

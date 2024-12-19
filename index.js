@@ -1,49 +1,64 @@
 const locationPrices = {
-    "telephely": { true: 0, false: 0 },
-    "város": { true: 100, false: 50 },
-    "vidék": { true: 150, false: 100 },
+    telephely: { true: 0, false: 0 },
+    város: { true: 100, false: 50 },
+    vidék: { true: 150, false: 100 },
     "roxwood county": { true: 200, false: 150 },
 };
 
-const categoryPrices = {
-    "munkajármű": [25, 37, 50],
-    "alsó": [50, 75, 100],
-    "közép": [100, 150, 200],
-    "felső": [150, 225, 300],
-    "luxus/prémium": [225, 340, 450],
-    "super classic": [75, 115, 150],
+const categoryPricesBright = {
+    "munkajármű": [20, 30, 35],
+    "alsó": [40, 55, 70],
+    "közép": [90, 120, 150],
+    "felső": [135, 180, 210],
+    "luxus/prémium": [210, 280, 315],
+    "super classic": [65, 90, 100],
 };
 
+const categoryPricesKovaac = {
+    "munkajármű": [20, 30, 35],
+    "alsó": [20, 45, 70],
+    "közép": [50, 100, 150],
+    "felső": [100, 150, 200],
+    "luxus/prémium": [210, 280, 315],
+    "super classic": [65, 90, 100],
+};
+
+const totaledInput = document.getElementById("totaled");
+const locationInput = document.getElementById("location");
+const typeInput = document.getElementById("type");
+const categoryInput = document.getElementById("category");
+const percentageInput = document.getElementById("percentage");
+const resultDisplay = document.getElementById("result");
+
 function calculatePrice() {
-    const isTotaled = document.getElementById("totaledCheckbox").checked;
-    const location = document.getElementById("locationSelect").value;
-    const category = document.getElementById("categorySelect").value;
-    const percentageInput = document.getElementById("percentageInput").value;
+    const isTotaled = totaledInput.checked;
+    const location = locationInput.value;
+    const type = typeInput.value;
+    const category = categoryInput.value;
+    const percentage = parseInt(percentageInput.value, 10);
 
-    const percentage = parseInt(percentageInput);
-    const resultText = document.getElementById("resultText");
+    if (percentage < 0 || percentage > 100) {
+        resultDisplay.textContent = "Hibás százalék (0-100 között)!";
+        return;
+    }
 
-    if (isNaN(percentage) || percentage < 0 || percentage > 100) {
-        resultText.textContent = "Hibás százalék! (0-100 között)";
+    const categoryPrices = type === "bright" ? categoryPricesBright : categoryPricesKovaac;
+
+    if (!locationPrices[location] || !categoryPrices[category]) {
+        resultDisplay.textContent = "Hibás adat!";
         return;
     }
 
     const percentageIndex = percentage >= 60 ? 0 : percentage >= 30 ? 1 : 2;
-
-    if (!(location in locationPrices) || !(category in categoryPrices)) {
-        resultText.textContent = "Hibás adat!";
-        return;
-    }
-
     const locationPrice = locationPrices[location][isTotaled];
     const categoryPrice = categoryPrices[category][percentageIndex];
     const totalPrice = locationPrice + categoryPrice;
 
-    resultText.textContent = `Végső ár: $${totalPrice}`;
+    resultDisplay.textContent = `Végső ár: $${totalPrice}`;
 }
 
-// Valós idejű frissítés
-document.getElementById("totaledCheckbox").addEventListener("change", calculatePrice);
-document.getElementById("locationSelect").addEventListener("change", calculatePrice);
-document.getElementById("categorySelect").addEventListener("change", calculatePrice);
-document.getElementById("percentageInput").addEventListener("input", calculatePrice);
+document.querySelectorAll("input, select").forEach(input => {
+    input.addEventListener("input", calculatePrice);
+});
+
+calculatePrice();
